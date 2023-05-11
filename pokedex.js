@@ -1,32 +1,56 @@
 
-//Traer la Ol  a JS
+// Obtener referencias a los elementos HTML
 const listaPokedex = document.getElementById("pokedex");
 
+// Variable que almacenará los datos de la API
+let allPokemon = [];
 
-//API
-const getPokemon = () => {
-    fetch("https://pokeapi.co/api/v2/pokemon/")
-    .then((response) => response.json())
-    .then((data) => console.log({data}))
+// Función para obtener los datos de la API
+const getApi = async () => {
+const url = `https://pokeapi.co/api/v2/pokemon/?offset=20&limit=150`;
+const resp = await fetch(url);
+const respJson = await resp.json();
+
+  // Guardar los datos en la variable allPokemon
+allPokemon = [...respJson.results];
 };
 
-//Mapear
-const pokemon = results.map((result) => ({
+// Función para renderizar los datos en la pantalla
+const renderPokemon = () => {
+  // Mapear los datos de la API para crear un array de objetos con los datos de cada Pokemon
+const pokemon = allPokemon.map((result) => ({
     name: result.name,
-    image: result.sprites['front_default'],
-    type: result.types.map((type) => type.type.name).join(', '),
-    id: result.id
+    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${result.url.split('/')[6]}.png`,
+    type: "",
+    id: result.url.split('/')[6]
 }));
 
-//Bucle for of para pintar en la pantalla
-
-for (const pokemon of pokemon) {
+  // Bucle for of para crear los elementos HTML para cada Pokemon y agregarlos a la lista
+for (const pokemonData of pokemon) {
+    // Crear un elemento li para cada Pokemon
     const li = document.createElement("li");
+
+    // Crear el contenido HTML para el elemento li con los datos del Pokemon
     li.innerHTML = `
-    <img src="${pokemon.image}" alt=""></img>
-    <h2>${pokemon.name}</h2>
-    <h3>${pokemon.type}</h3>
-    <p>${pokemon.id}</p>
+    <img src="${pokemonData.image}" alt="">
+    <h2>${pokemonData.name}</h2>
+    <h3>${pokemonData.type}</h3>
+    <p>${pokemonData.id}</p>
     `;
+
+    // Agregar el elemento li a la lista
     listaPokedex.appendChild(li);
+}
 };
+
+// Función principal para iniciar el programa
+const init = async () => {
+  // Obtener los datos de la API
+await getApi();
+
+  // Renderizar los datos en la pantalla
+renderPokemon();
+};
+
+// Llamar a la función init() para iniciar el programa
+init();
