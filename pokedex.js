@@ -43,6 +43,29 @@ for (const pokemonData of pokemon) {
 }
 };
 
+//Crear el div 
+
+const div = document.createElement("div");
+div.innerHTML = `
+<input type="text" id="searchInput" placeholder="Buscar...">
+<ul id="resultsList"></ul> `;
+
+//traer el input a JS
+
+const searchInput = document.querySelector("#searchInput");
+
+//Crear el event
+input.addEventListener("input", handleInputSearch);
+
+//funcion event
+
+function handleInputSearch(ev){
+  const pokeSearch = ev.target.value;
+  
+}
+
+
+
 // Función principal para iniciar el programa
 const init = async () => {
   // Obtener los datos de la API
