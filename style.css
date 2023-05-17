@@ -19,6 +19,8 @@ body {
     background-color: #f4f4f4;
     color: #222;
     text-align: center;
+    border-radius: 20%;
+    box-shadow: 5px 5px 10px;
   }
   .card-title {
     text-transform: uppercase;
@@ -43,6 +45,24 @@ body {
   .card:hover {
     animation: bounce 0.5s linear;
   }
+
+  .search {
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .input {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 5px 5px 10px;
+  }
+  
+  li {
+    border: 1px solid white;
+    padding: 10px;
+  }
+
   @keyframes bounce {
     20% {
       transform: translateY(-6px);

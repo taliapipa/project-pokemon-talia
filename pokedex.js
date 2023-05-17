@@ -27,10 +27,11 @@ const renderPokemon = (pokemonData) => {
 
     // Crear el contenido HTML para el elemento li con los datos del Pokemon
     li.innerHTML = `
-      <img src="${pokemon.image}" alt="">
-      <h2>${pokemon.name}</h2>
-      <h3>${pokemon.type}</h3>
-      <p>${pokemon.id}</p>
+      <img src="${pokemon.image}" alt="" class="card">
+      <h2 class:"card-title">${pokemon.name}</h2>
+      <h3 class:".card-subtitle">${pokemon.type}</h3>
+      <p class:".card-subtitle">${pokemon.id}</p>
+      <img src="
     `;
 
     // Agregar el elemento li a la lista
@@ -59,6 +60,8 @@ searchInput.addEventListener("input", (ev) => {
   const query = ev.target.value.toLowerCase();
   filterPokemon(query);
 });
+
+//
 
 // Función principal para iniciar el programa
 const init = async () => {
