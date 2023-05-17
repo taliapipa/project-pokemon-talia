@@ -63,6 +63,11 @@ body {
     padding: 10px;
   }
 
+  .like {
+    width: 20px;
+    filter: invert(100%);
+  }
+
   @keyframes bounce {
     20% {
       transform: translateY(-6px);

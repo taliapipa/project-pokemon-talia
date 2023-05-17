@@ -31,7 +31,7 @@ const renderPokemon = (pokemonData) => {
       <h2 class:"card-title">${pokemon.name}</h2>
       <h3 class:".card-subtitle">${pokemon.type}</h3>
       <p class:".card-subtitle">${pokemon.id}</p>
-      <img src="
+      <img src="iconos/pngegg.png" alt="" class="like"/>
     `;
 
     // Agregar el elemento li a la lista
@@ -61,7 +61,7 @@ searchInput.addEventListener("input", (ev) => {
   filterPokemon(query);
 });
 
-//
+//Evento para cuando pulses
 
 // Función principal para iniciar el programa
 const init = async () => {
