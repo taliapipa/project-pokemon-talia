@@ -28,9 +28,9 @@ const renderPokemon = (pokemonData) => {
     // Crear el contenido HTML para el elemento li con los datos del Pokemon
     li.innerHTML = `
       <img src="${pokemon.image}" alt="" class="card">
-      <h2 class:"card-title">${pokemon.name}</h2>
-      <h3 class:".card-subtitle">${pokemon.type}</h3>
-      <p class:".card-subtitle">${pokemon.id}</p>
+      <h2 class="card-title">${pokemon.name}</h2>
+      <h3 class=".card-subtitle">${pokemon.type}</h3>
+      <p class=".card-subtitle">${pokemon.id}</p>
       <img src="iconos/pngegg.png" alt="" class="like"/>
     `;
 
@@ -61,7 +61,27 @@ searchInput.addEventListener("input", (ev) => {
   filterPokemon(query);
 });
 
-//Evento para cuando pulses
+//Evento para favoritos
+const like = document.querySelector(".like");
+let pokeFavs = [];
+
+like.addEventListener("click", handlerFavs);
+
+//Función para favoritos
+const handlerFavs = () => {
+  const filteredResults = allPokemon.filter(item => item.name.toLowerCase().includes(query));
+
+  const pokemonData = filteredResults.map((result) => ({
+    name: result.name,
+    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${result.url.split('/')[6]}.png`,
+    type: "",
+    id: result.url.split('/')[6]
+  }));
+  
+  for (const poke of pokemonData) {
+    pokeFavs.push(poke);
+  }
+}
 
 // Función principal para iniciar el programa
 const init = async () => {
