@@ -67,6 +67,11 @@ body {
     width: 20px;
     filter: invert(100%);
   }
+  .liked {
+    width: 20px;
+    filter: invert(100%);
+    display: none;
+  }
 
   @keyframes bounce {
     20% {

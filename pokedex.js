@@ -32,7 +32,8 @@ const renderPokemon = (pokemonData) => {
       <h2 class="card-title">${pokemon.name}</h2>
       <h3 class="card-subtitle">${pokemon.type}</h3>
       <p class="card-subtitle">${pokemon.id}</p>
-      <img src="iconos/pngegg.png" alt="" class="like"/>
+      <img src="iconos/pngegg.png" alt="" class="like" id="like"/>
+      <img src="iconos/pngegg (1).png" alt="" class="liked" id="liked"/>
     `;
 
     // Agregar el elemento li a la lista
@@ -79,10 +80,26 @@ listaPokedex.addEventListener("click", (ev) => {
       image: image
     };
 
-    pokeFavs.push(pokemon);
+    toggleFavorite(pokemon, ev.target);
     renderFavs();
   }
 });
+
+// Función para agregar o quitar un Pokemon favorito
+const toggleFavorite = (pokemon, button) => {
+  const index = pokeFavs.findIndex((fav) => fav.name === pokemon.name);
+  if (index !== -1) {
+    // Si el Pokemon ya es un favorito, eliminarlo del array de favoritos
+    pokeFavs.splice(index, 1);
+    button.src = "iconos/pngegg.png"; // Cambiar la imagen del botón a "like"
+  } else {
+    // Si el Pokemon no es un favorito, agregarlo al array de favoritos
+    pokeFavs.push(pokemon);
+    button.src = "iconos/pngegg (1).png"; // Cambiar la imagen del botón a "liked"
+  }
+};
+
+
 
 // Función para renderizar los Pokemon favoritos en la pantalla
 const renderFavs = () => {
@@ -98,6 +115,8 @@ const renderFavs = () => {
     pokeFavsContainer.appendChild(pokeDiv);
   }
 };
+
+//Función para quitar favoritos
 
 // Variables para almacenar los Pokemon favoritos
 let pokeFavs = [];
