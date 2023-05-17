@@ -11,7 +11,6 @@ const getApi = async () => {
   const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150`;
   const resp = await fetch(url);
   const respJson = await resp.json();
-
   // Guardar los datos en la variable allPokemon
   allPokemon = [...respJson.results];
 };
@@ -82,6 +81,7 @@ listaPokedex.addEventListener("click", (ev) => {
 
     toggleFavorite(pokemon, ev.target);
     renderFavs();
+
   }
 });
 
@@ -97,8 +97,10 @@ const toggleFavorite = (pokemon, button) => {
     pokeFavs.push(pokemon);
     button.src = "iconos/pngegg (1).png"; // Cambiar la imagen del botón a "liked"
   }
+
 };
 
+localStorage.setItem("objetoUser", listaPokedex);
 
 
 // Función para renderizar los Pokemon favoritos en la pantalla
@@ -131,6 +133,9 @@ const init = async () => {
 
   // Enfocar el campo de búsqueda al cargar la página
   searchInput.focus();
+
+  const getLocal = JSON.parse(localStorage.getItem("objetoUser", listaPokedex))
+  console.log(getLocal)
 };
 
 // Llamar a la función init() para iniciar el programa
